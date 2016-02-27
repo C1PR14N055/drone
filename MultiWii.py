@@ -78,6 +78,7 @@ class MultiWii:
     """Function for sending a command to the board"""
     def sendCMD(self, data_length, code, data):
         checksum = 0
+        #$M = MultiWii preamble, < = direction
         total_data = ['$', 'M', '<', data_length, code] + data
         for i in struct.pack('<2B%dh' % len(data), *total_data[3:len(total_data)]):
             checksum = checksum ^ ord(i)
