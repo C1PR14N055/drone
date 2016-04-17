@@ -41,6 +41,10 @@ class MultiWii:
     IS_SERIAL = 211
     DEBUG = 254
 
+
+    # Board armed status
+    armedStatus = False
+
     """Class initialization"""
     def __init__(self, serPort):
 
@@ -69,7 +73,7 @@ class MultiWii:
             self.ser.open()
             print "Waking up board on " + self.ser.port
             if self.ser.isOpen():
-                time.sleep(3)
+                time.sleep(1)
                 print "\nBoard is on"
             
         except Exception, error:
@@ -136,6 +140,7 @@ class MultiWii:
             time.sleep(0.05)
             timer = timer + (time.time() - start)
             start =  time.time()
+        armedStatus = True    
 
     def disarm(self):
         timer = 0
@@ -146,6 +151,10 @@ class MultiWii:
             time.sleep(0.05)
             timer = timer + (time.time() - start)
             start =  time.time()
+        armedStatus = False    
+
+    def isArmed(self):
+        return armedStatus;        
 
     """Function to receive a data packet from the board"""
     def getData(self, cmd):
