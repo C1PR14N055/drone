@@ -52,3 +52,15 @@ sudo pkill uv4l
 
 #stop uv4l driver
 sudo service uv4l_raspicam stop
+
+
+
+TODO ::: 
+- change start video stream port to 9090
+- stop video onpause and on settings page
+- loader icon
+- TCP
+- receive stuff back to the apk
+- finish settings
+- start python on startup
+- autoland, USB option?
