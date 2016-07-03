@@ -1,0 +1,6 @@
+{
+	"tcp_ip" : "192.168.1.1",
+	"tcp_port" : "12345",
+	"stream_video" : true,
+	"stream_video_cmd" : "uv4l -nopreview --auto-video_nr --vflip yes --hflip yes --driver raspicam --encoding h264 --width 640 --height 320 --framerate 60 --server-option '--port=9090' --server-option '--max-queued-connections=30' --server-option '--max-streams=1' --server-option '--max-threads=29'"
+}
