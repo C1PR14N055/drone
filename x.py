@@ -24,12 +24,11 @@ def startListeningUDP():
 		dataStr, addr = sock.recvfrom(16)
 		print dataStr
 		data = [int(dataStr[0:4]), int(dataStr[4:8]), int(dataStr[8:12]), int(dataStr[12:16])]
-		if len(dataStr) != 15:
+		if len(dataStr) != 16:
 			print "-- INCOMPLETE, SKIPPED --"
 			continue
-		if (cmd == 1 and board.isArmed()) {
-			board.sendCMD(8, MultiWii.SET_RAW_RC, data);
-		}		
+		if cmd == 1 and board.isArmed():
+			board.sendCMD(8, MultiWii.SET_RAW_RC, data);	
 
 def serverTCP():
 	global TCP_IP, TCP_PORT, board, cmd
@@ -41,11 +40,23 @@ def serverTCP():
 	while True:
 		if c is None:
 	   		c, addr = s.accept()     # Establish connection with client.
+	   		#print "ACC"
+	   		c.send("---\n")
 	   	else:
+	   		#print "RECEIVING DATA"
+	   		dataStr = str(c.recv(8))
+	   		#print "RECEIVED " + dataStr
 	   		msg = board.getData(MultiWii.ATTITUDE)
 	   		if msg is not None:
-	   			c.send(str(msg))
-	   		dataStr = str(c.recv(8))
+	   			#print "SENDING MSG"
+	   			c.send(str(msg) + "\n")
+	   			#print "SENT " + str(msg)
+	   		else:
+	   			#print "SENDING ---"
+	   			c.send("---\n")	
+	   			#print "SENT ---"
+
+	   		
 
 	   	if dataStr is not None:
 			cmd = int(dataStr[:1])
