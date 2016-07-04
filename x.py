@@ -103,7 +103,8 @@ def init():
 	global TCP_IP, TCP_PORT, STREAM_VIDEO, STREAM_VIDEO_CMD	
 
 	try:
-		f = open("x-conf.json", "r").read()
+		#os.system("cd ~");
+		f = open(os.path.expanduser("~/x-conf.json"), "r").read()
 		j = json.loads(f)
 		TCP_IP = j["tcp_ip"]
 		TCP_PORT = int(j["tcp_port"])
