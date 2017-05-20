@@ -8,11 +8,14 @@
 raspivid -o video.h264 -t 5000
 
 #mplayer and nc.traditional streaming
+
 #on pc
+
 mkfifo fifo.264
 nc.traditional -l -p 5000 > fifo.264 | mplayer -fps 30 fifo.264 -cache 1024
 
 #on pi
+
 cat fifo.264 | nc.traditional 192.168.1.143 5000 & /opt/vc/bin/raspivid -o fifo.264 -t 10000000 -b 2000000
 
 #settup uv4l
