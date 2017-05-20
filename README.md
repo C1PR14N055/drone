@@ -11,6 +11,7 @@ raspivid -o video.h264 -t 5000
 #### on pc
 
 mkfifo fifo.264
+
 nc.traditional -l -p 5000 > fifo.264 | mplayer -fps 30 fifo.264 -cache 1024
 
 #### on pi
