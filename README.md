@@ -1,7 +1,5 @@
 # drone
-Just pieces as of now
-
-Trying to build a drone ^_^
+Android + raspberry pi FPV drone build
 
 ###Usefull cmds for now
 
